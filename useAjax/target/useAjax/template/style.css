@@ -1,0 +1,20 @@
+body {
+    margin-top:20px;
+    margin-left: 10vw;
+    background:#f8f8f8;
+    width: 80vw;
+}
+h1 {
+    color: blue;
+}
+#form, #show {
+    width: 80vw;
+    position: fixed;
+    overflow: auto;
+    bottom: -900px;
+    transition: bottom 1.5s;
+    background-color: lightgray;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px gray;
+    border-radius: 10px;
+}

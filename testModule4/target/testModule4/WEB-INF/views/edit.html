@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Edit City</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/template/style.css}">
+</head>
+<body>
+<center>
+    <h1>Sửa thông tin</h1>
+    <hr>
+    <a href="/" style="float: right"><button class="btn btn-outline-primary">Quay lại danh sách</button></a>
+    <br>
+    <form th:action="@{/edit-city}" th:object="${city}" method="post">
+        <input th:type="hidden" name="idCity" th:field="*{idCity}">
+        <table class="table table-hover">
+            <tr>
+                <td>Tên:</td>
+                <td><input type="text" class="form-control" th:field="*{nameCity}" placeholder="...tên từ 2-30 kí tự"/></td>
+            </tr>
+            <tr>
+                <td>Quốc gia:</td>
+                <td>
+                    <select name="country" class="form-control">
+                        <option th:each="c : ${countries}"
+                                th:value="${c.idCountry}"
+                                th:text="${c.nameCountry}"
+                                th:selected="(${city.country}) and (${c.idCountry} == *{country.idCountry})"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Diện tích:</td>
+                <td><input type="number" class="form-control" th:field="*{area}" placeholder="...nhập số lớn hơn 0"/></td>
+            </tr>
+            <tr>
+                <td>Dân số:</td>
+                <td><input type="number" class="form-control" th:field="*{population}" placeholder="...nhập số lớn hơn 0"/></td>
+            </tr>
+            <tr>
+                <td>GDP:</td>
+                <td><input type="number" class="form-control" th:field="*{gdp}" placeholder="...nhập số lớn hơn 0"/></td>
+            </tr>
+            <tr>
+                <td>Giới thiệu:</td>
+                <td><textarea rows="3" class="form-control" th:field="*{description}" placeholder="...có thể để trống"/></td>
+            </tr>
+        </table>
+        <input type="submit" class="btn btn-outline-primary" value="Xác nhận sửa">
+    </form>
+    <th:block th:if="${message}">
+        <h6 th:text="${message}" style="color: red"></h6>
+    </th:block>
+</center>
+</body>
+</html>
