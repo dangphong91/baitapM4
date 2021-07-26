@@ -43,14 +43,11 @@ public class CityController {
 
     @PostMapping("/create-city")
     public ModelAndView saveCity(@Validated @ModelAttribute("city") City city, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView("/create");
         if (bindingResult.hasFieldErrors()) {
-            ModelAndView modelAndView = new ModelAndView("/create");
-            modelAndView.addObject("city", new City());
-            modelAndView.addObject("message", "Vui lòng nhập đúng yêu cầu");
             return modelAndView;
         }
         cityService.save(city);
-        ModelAndView modelAndView = new ModelAndView("/create");
         modelAndView.addObject("city", new City());
         modelAndView.addObject("message", "Thành phố đã được thêm thành công");
         return modelAndView;

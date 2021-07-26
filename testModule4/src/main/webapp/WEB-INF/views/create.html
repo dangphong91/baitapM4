@@ -17,27 +17,31 @@
         <table class="table table-hover">
             <tr>
                 <td>Tên:</td>
-                <td><input type="text" class="form-control" th:field="*{nameCity}" placeholder="...tên từ 2-30 kí tự"/></td>
+                <td th:if="!${#fields.hasErrors('nameCity')}"><input type="text" class="form-control" th:field="*{nameCity}" placeholder="...tên từ 2-30 kí tự"/></td>
+                <td th:if="${#fields.hasErrors('nameCity')}"><input type="text" class="form-control border border-danger" th:field="*{nameCity}" placeholder="...tên từ 2-30 kí tự"/></td>
             </tr>
             <tr>
                 <td>Quốc gia:</td>
                 <td>
-                    <select th:field="*{country}" class="form-control">
+                    <select name="country" class="form-control">
                         <option th:each="c : ${countries}" th:value="${c.idCountry}" th:text="${c.nameCountry}"></option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Diện tích:</td>
-                <td><input type="number" class="form-control" th:field="*{area}" placeholder="...nhập số lớn hơn 0"/></td>
+                <td th:if="!${#fields.hasErrors('area')}"><input type="number" class="form-control" th:field="*{area}" placeholder="...nhập số lớn hơn 0"/></td>
+                <td th:if="${#fields.hasErrors('area')}"><input type="number" class="form-control border border-danger" th:field="*{area}" placeholder="...nhập số lớn hơn 0"/></td>
             </tr>
             <tr>
                 <td>Dân số:</td>
-                <td><input type="number" class="form-control" th:field="*{population}" placeholder="...nhập số lớn hơn 0"/></td>
+                <td th:if="!${#fields.hasErrors('population')}"><input type="number" class="form-control" th:field="*{population}" placeholder="...nhập số lớn hơn 0"/></td>
+                <td th:if="${#fields.hasErrors('population')}"><input type="number" class="form-control border border-danger" th:field="*{population}" placeholder="...nhập số lớn hơn 0"/></td>
             </tr>
             <tr>
                 <td>GDP:</td>
-                <td><input type="number" class="form-control" th:field="*{gdp}" placeholder="...nhập số lớn hơn 0"/></td>
+                <td th:if="!${#fields.hasErrors('gdp')}"><input type="number" class="form-control" th:field="*{gdp}" placeholder="...nhập số lớn hơn 0"/></td>
+                <td th:if="${#fields.hasErrors('gdp')}"><input type="number" class="form-control border border-danger" th:field="*{gdp}" placeholder="...nhập số lớn hơn 0"/></td>
             </tr>
             <tr>
                 <td>Giới thiệu:</td>
@@ -45,10 +49,14 @@
             </tr>
         </table>
         <input type="submit" class="btn btn-outline-primary" value="Xác nhận thêm">
+        <div>
+            <h6 th:if="${#fields.hasErrors('nameCity')}" style="font-style: italic; color: red">*Nhập tên từ 2-30 kí tự</h6>
+            <h6 th:if="${#fields.hasErrors('area')}" style="font-style: italic; color: red">*Diện tích phải là số dương</h6>
+            <h6 th:if="${#fields.hasErrors('population')}" style="font-style: italic; color: red">*Dân số phải là số dương</h6>
+            <h6 th:if="${#fields.hasErrors('gdp')}" style="font-style: italic; color: red">*GDP phải là số dương</h6>
+            <h6 th:if="${message}" th:text="${message}" style="color: blue"></h6>
+        </div>
     </form>
-    <th:block th:if="${message}">
-        <h6 th:text="${message}" style="color: red"></h6>
-    </th:block>
 </center>
 </body>
 </html>

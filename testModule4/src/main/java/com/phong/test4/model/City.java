@@ -29,12 +29,12 @@ public class City {
     @Min(0)
     private double area;
     @Min(0)
-    private double population;
+    private long population;
     @Min(0)
     private double gdp;
     private String description;
 
-    public City(@Size(min = 2, max = 30) String nameCity, Country country,@Min(0) double area,@Min(0) double population,@Min(0) double gdp, String description) {
+    public City(@Size(min = 2, max = 30) String nameCity, Country country,@Min(0) double area,@Min(0) long population,@Min(0) double gdp, String description) {
         this.nameCity = nameCity;
         this.country = country;
         this.area = area;
